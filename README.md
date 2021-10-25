@@ -12,6 +12,12 @@ This project serves as an introduction to create your first spring boot applicat
 
 Update the PostgreSQL configuration settings in [application.properties](src/main/resources/application.properties)
 
+```SQL
+create database springBootDemo;
+create user demouser with password 'demouser' CREATEDB;
+grant all privileges on database springBootDemo to demoUser;
+```
+
 Use the package manager [maven](https://maven.apache.org/download.cgi) to install the project dependencies.
 
 ```bash

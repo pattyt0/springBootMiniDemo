@@ -32,7 +32,6 @@ build/
 ### VS Code ###
 .vscode/
 /mvnw.cmd
-/src/main/resources/application.properties
 /.mvn/wrapper/MavenWrapperDownloader.java
 /mvnw
 /.mvn/wrapper/maven-wrapper.properties

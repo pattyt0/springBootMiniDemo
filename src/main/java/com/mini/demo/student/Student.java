@@ -1,17 +1,13 @@
 package com.mini.demo.student;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
 
@@ -34,6 +30,7 @@ public class Student {
 
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
+    @JsonProperty("birth")
     @Column(name = "dob")
     public LocalDate dob;
 
@@ -82,8 +79,9 @@ public class Student {
         this.dob = dob;
     }
 
+    @JsonGetter
     public Integer getAge() {
-        if (nonNull(this.age)) {
+        if (nonNull(this.dob)) {
             return Period.between(dob, LocalDate.now()).getYears();
         }
         return 0;
@@ -95,7 +93,7 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student{" +
+        return "{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
